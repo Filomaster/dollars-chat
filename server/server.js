@@ -30,7 +30,7 @@ app.post("/login", (req, res) => {
   out.debug("test");
   if (!req.session.name) {
     req.session.name = req.body.name;
-    req.session.color = `hsl(${getRandomInt(0, 360)}, 90%, 40%)`; // `hsl(${getRandomInt(0, 100)}%,100%,50%)`;
+    req.session.color = getRandomInt(0, 360); // `hsl(${getRandomInt(0, 100)}%,100%,50%)`;
   }
   res.sendStatus(200);
 });
@@ -53,6 +53,10 @@ app.get("/chat", (req, res) => {
   res.sendFile(path.join(path.resolve(), "/public/chat.html"));
 });
 
+app.post("/color", (req, res) => {
+  req.session.color = getRandomInt(0, 360);
+  res.status(200).send({ color: req.session.color });
+});
 app.post("/message", (req, res) => {
   poll.publish("/poll", {
     type: "message",
