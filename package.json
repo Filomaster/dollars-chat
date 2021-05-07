@@ -1,0 +1,21 @@
+{
+  "name": "dollars-irc-chat",
+  "version": "1.0.0",
+  "description": "IRC chat project inspired by Durarara Dollars",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node ./server/server.js",
+    "dev": "nodemon ./server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Filip 'Filomaster' Majorek",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-longpoll": "0.0.6",
+    "express-session": "^1.17.1",
+    "nodemon": "^2.0.7",
+    "supports-color": "^9.0.0"
+  }
+}

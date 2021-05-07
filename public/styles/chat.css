@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  width: 100vw;
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 1fr 5fr;
+      grid-template-rows: 1fr 5fr;
+}
+
+#input-window {
+  background-color: white;
+  color: black;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+#input-wrapper {
+  height: 80%;
+  width: 80%;
+  background-color: white;
+  color: black;
+  overflow: hidden;
+  border-radius: 15px;
+  border: 2px solid black;
+}
+
+#message-text {
+  width: 98%;
+  height: 100%;
+  padding-left: 2%;
+  resize: none;
+  background-color: transparent;
+  border: none;
+  scrollbar-gutter: always force;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 1.1em;
+}
+
+#messages-window {
+  background-color: black;
+  color: white;
+  overflow-y: scroll;
+  padding: 1vh;
+}
+
+#message-text:focus {
+  outline: none;
+}
+
+button {
+  background-color: white;
+  color: black;
+  height: 2em;
+  width: 40%;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 1em;
+  font-weight: 700;
+  border-radius: 25px;
+  border: 2px solid black;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+/*# sourceMappingURL=chat.css.map */
