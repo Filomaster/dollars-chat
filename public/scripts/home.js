@@ -15,7 +15,7 @@ function send() {
     }).then((response) => {
       window.open(
         "/chat",
-        "chat",
+        "_self", //"chat",
         "height=1000, width=800, menubar=no, toolbar=no, location=no, status=0, titlebar=0"
       );
     });
