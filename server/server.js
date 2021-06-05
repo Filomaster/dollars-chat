@@ -22,6 +22,7 @@ app.use(
   session({
     secret: "blue-squares",
     resave: false,
+    saveUninitialized: true,
     cookie: {},
   })
 );
@@ -30,7 +31,7 @@ app.post("/login", (req, res) => {
   out.debug("test");
   if (!req.session.name) {
     req.session.name = req.body.name;
-    req.session.color = getRandomInt(0, 360); // `hsl(${getRandomInt(0, 100)}%,100%,50%)`;
+    req.session.color = { color: getRandomInt(0, 360), type: "generated" }; // `hsl(${getRandomInt(0, 100)}%,100%,50%)`;
   }
   res.sendStatus(200);
 });
@@ -54,8 +55,22 @@ app.get("/chat", (req, res) => {
 });
 
 app.post("/color", (req, res) => {
-  req.session.color = getRandomInt(0, 360);
+  let type = "generated";
+  if (req.body.color) type = "css";
+  req.session.color = { color: type == "generated" ? getRandomInt(0, 360) : req.body.color, type };
   res.status(200).send({ color: req.session.color });
+});
+app.post("/avatar", (req, res) => {
+  req.session.avatar = req.body.avatar || "/images/avatar.png";
+  res.status(200).send({ avatar: req.body.avatar });
+});
+app.post("/nick", (req, res) => {
+  poll.publish("/poll", {
+    type: "system",
+    content: `User ${req.session.name} changed nickname to: ${req.body.nick}`,
+  });
+  req.session.name = req.body.nick;
+  res.status(200).send({ nick: req.body.nick });
 });
 app.post("/message", (req, res) => {
   poll.publish("/poll", {
@@ -63,6 +78,7 @@ app.post("/message", (req, res) => {
     content: req.body.message,
     color: req.session.color,
     name: req.session.name,
+    avatar: req.session.avatar,
   });
   res.end();
 });
