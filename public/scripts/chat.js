@@ -197,8 +197,8 @@ function post() {
           newMessage.innerText +=
             "-- All available commands: \n" +
             "   help - shows all commands\n" +
-            "   color - changes user color to any valid css color; random color if used without param\n";
-          +"   avatar - changes user avatar to any image from url\n" +
+            "   color - changes user color to any valid css color; random color if used without param\n" +
+            "   avatar - changes user avatar to any image from url\n" +
             "   nick - changes user nickname to given";
           break;
       }
